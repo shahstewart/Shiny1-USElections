@@ -1,0 +1,110 @@
+/* Get a fancy font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+body {
+    background: #000;
+    color: #aaa;
+}
+
+.container-fluid {
+    width: 90%;
+    max-width: 1200px;
+    min-width: 800px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.col-sm-8[role=main] {
+    background: #666;
+    border-radius: 4px;
+    color: #ddd;
+    padding: 0 15px;    
+}
+
+.row {
+    margin-top: 30px;
+}
+
+.well {
+    text-align: left;
+    color: #333;
+    /*height: 800px;*/
+    overflow: auto;
+}
+
+h3.optionsHead {
+    margin-top: 0;
+}
+
+h3.stateHead {
+    margin-top: 45px;
+}
+
+.mainPanelHeader {
+    margin-bottom:20px;
+}
+.shiny-input-container {
+    color: #474747;
+}
+
+.js-plotly-plot .plotly, .js-plotly-plot .plotly div {
+    padding: 0 15px;
+}
+
+.tabbable {
+    padding-top: 20px;
+}
+
+.nav-tabs>li>a {
+    color: #ddd;
+}
+.nav-tabs>li>a:hover {
+    color: #666;
+}
+
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover {
+    background: #f4f4f4;
+}
+
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover {    
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tab-content>.active {
+    background: #f4f4f4;
+    color: #333;
+    padding: 15px;
+    overflow: auto;
+    min-height: 1000px;
+}
+
+.tab-content>.tab-pane:first-of-type {
+    /*background: inherit;*/
+    /*color: #ddd;*/
+    /*padding: 0;*/
+}
+
+.tab-pane .secHead, .tab-pane p {
+    text-align: left;
+}
+
+.row {
+    display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
