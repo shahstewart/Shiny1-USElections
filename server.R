@@ -73,35 +73,34 @@ shinyServer(function(input, output) {
         } else {
             fig <- fig %>%
                 add_trace(z = ~percRep, locations = ~state_po, color = ~percRep,
-                          colorscale = 'Picnic', text = ~hover, hoverinfo = 'text')
+                          colorscale = 'Bluered', text = ~hover, hoverinfo = 'text')
         }
 
         fig <- fig %>% layout(title=list(text=paste('Year', selectedYear()), y=.95, 
-                                         x = 0.01, font=list(size=24, family='Open Sans')), geo = g)
+                                         x = 0.02, font=list(size=24, family='Open Sans')), geo = g)
 
         if(input$showVoteType == 1 | input$showVoteType ==2) {
-            fig %>% colorbar(title = colBarTitles[as.numeric(input$showVoteType)], y = .78, 
+            fig %>% colorbar(title = colBarTitles[as.numeric(input$showVoteType)], y = .9, len=.8, thickness=12, 
                              limits = c(10, 90), tickvals = c(10, 90), ticktext = c('10-%', '90+%'))
         } else {
-            fig %>% colorbar(title = colBarTitles[as.numeric(input$showVoteType)], y = .78, 
-                    limits = c(10, 90), tickvals = c(10, 90), ticktext = c('90+% \nDem', '90+% \nRep'))
+            fig %>% colorbar(title = colBarTitles[as.numeric(input$showVoteType)], y = .9, len=.8, thickness=12, 
+                    limits = c(0, 100), tickvals = c(10, 90), ticktext = c('90% \nDem', '90% \nRep'))
         }
-
     })
     
     output$usVotePlot <- renderPlotly(
-        plot_ly(usPlotData, x=~year, y=~demPercs, type='scatter', mode='lines', line=list(color='blue'), name='Democratic') %>%
-            add_trace(y=~repPercs, mode='lines', line=list(color='red'), name='Republican') %>%
-            add_trace(y=~othPercs, mode='lines', line=list(color='gray'), name='Other') %>%
-            layout(yaxis=list(title='Percent Votes'), 
+        plot_ly(usPlotData, x=~year, y=~demPercs, type='scatter', mode='lines+markers', line=list(color='blue'), name='Democratic') %>%
+            add_trace(y=~repPercs, mode='lines+markers', line=list(color='red'), name='Republican') %>%
+            add_trace(y=~othPercs, mode='lines+markers', line=list(color='gray'), name='Other') %>%
+            layout(yaxis=list(title='Percent Votes'), hovermode='x unified',
                    xaxis=list(title='Year', autotick=F, tickmode='array', tickvals=c(1980, 1988, 1996, 2004, 2012, 2020)))
     )
     
     output$stateVotePlot <- renderPlotly(
-        plot_ly(statePlotData(), x=~year, y=~demPercs, type='scatter', mode='lines', line=list(color='blue'), name='Democratic') %>%
-        add_trace(y=~repPercs, mode='lines', line=list(color='red'), name='Republican') %>%
-        add_trace(y=~othPercs, mode='lines', line=list(color='gray'), name='Other') %>%
-        layout(title=list(text=selectedState(), y=0.95), yaxis=list(title='Percent Votes'), 
+        plot_ly(statePlotData(), x=~year, y=~demPercs, type='scatter', mode='lines+markers', line=list(color='blue'), name='Democratic') %>%
+        add_trace(y=~repPercs, mode='lines+markers', line=list(color='red'), name='Republican') %>%
+        add_trace(y=~othPercs, mode='lines+markers', line=list(color='gray'), name='Other') %>%
+        layout(title=list(text=selectedState(), y=0.95), yaxis=list(title='Percent Votes'), hovermode='x unified', 
                xaxis=list(title='Year', autotick=F, tickmode='array', tickvals=c(1980, 1988, 1996, 2004, 2012, 2020)))
         %>% hide_legend()
     )
