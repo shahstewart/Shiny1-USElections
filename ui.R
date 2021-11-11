@@ -85,7 +85,7 @@ shinyUI(fluidPage(
                     </p>'), br(),
                     h4('Data Processing', class='secHead'),
                     HTML('<p>The code for this app is avalialbe at 
-                    <a href="https://github.com/shahstewart/DPP-USPresElections">my GitHub Repo</a>,
+                    <a href="https://github.com/shahstewart/Shiny1-USElections">my GitHub Repo</a>,
                      where the The original data as well as the processed data can bee seen.</p'), br(),
                     p('- The data was filtered to only contain fileds year, state, state abbrevation, party 
                     (simplified as Republican, Democratic, Other), candidatevotes, total votes.'), br(),
