@@ -30,7 +30,7 @@ shinyUI(fluidPage(
                     plotlyOutput('usVotePlot')
                 ),
                 tabPanel(
-                    'About',
+                    'Documentaion',
                     h3('About this app', class='secHead'),
                     HTML('<p>This app was created as a part of the coursework for the 
                     <a href="https://www.coursera.org/learn/data-products/home/welcome">Developing Data Products</a>
