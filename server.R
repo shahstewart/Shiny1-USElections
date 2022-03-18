@@ -11,8 +11,8 @@ shinyServer(function(input, output) {
         mutate(demPercs = demTotals*100/totals, repPercs = repTotals*100/totals, othPercs=othTotals*100/totals)
 
     statePlotData <- reactive({ 
-        if(input$state == 'ALL US') sd <- data
-        else sd <- data %>% filter(state == input$state)
+        if(input$state == 'All Us') sd <- data
+        else sd <- data %>% filter(state == toupper(input$state))
 
         sd %>% select(year, demVotes, repVotes, totalVotes) %>%
         mutate(othVotes = totalVotes - demVotes - repVotes) %>% group_by(year) %>%
@@ -32,8 +32,8 @@ shinyServer(function(input, output) {
     details <- reactive({
         st <- paste('<h5>', input$state, '</h5>', 'Year:<b>', input$year, '</b><br>')
         
-        if(selectedState() != 'ALL US') {
-            d <- data[data$year == input$year & data$state == input$state,]
+        if(selectedState() != 'All Us') {
+            d <- data[data$year == input$year & data$state == toupper(input$state),]
             paste(
                 st, 'Total Votes:<b>', d['totalVotes'], '</b><br>',
                 'Democratic Votes:<b>', d['demVotes'], '</b><br>',
@@ -107,12 +107,12 @@ shinyServer(function(input, output) {
     
     output$mainPanelHeader <- renderText(
         paste(
-            '<center><h3>', selectedYear(), 'Presidential Election Votes by State</h3><h4>Percent Vote,',
+            '<center><h3>', selectedYear(), 'Presidential Election Votes by State</h3><h4>Percent Popular Vote,',
             selectedVoteType(), '</h4></center>'
         )) 
     
     output$details <- renderText(details())
     
-    output$statePlotHeader <- renderText(paste('Presidential Election Vote Proportions in', 
-            selectedState(),'from 1979-2020:'))
+    output$statePlotHeader <- renderText(paste('Presidential Election Vote by party in', 
+            selectedState(),'from 1976-2020:'))
 })

@@ -108,3 +108,9 @@ h3.stateHead {
   display: flex;
   flex-direction: column;
 }
+hr {
+    border: 1px solid #888;
+}
+ul li {
+    text-align: left;
+}
