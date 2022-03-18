@@ -1,5 +1,5 @@
 library(shiny); library(plotly); library(stringr)
-states <- read.csv('states.csv')
+states <- read.csv('./data/states.csv')
 ch <- as.list(str_to_title(states$names)) 
 
 shinyUI(fluidPage(

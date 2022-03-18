@@ -1,7 +1,8 @@
 library(shiny); library(dplyr); library(plotly)
 
 shinyServer(function(input, output) {
-    data <- read.csv('processedData.csv')
+    data <- read.csv('./data/processedData.csv')
+    won <- read.csv('./data/winningPresidents.csv')
     
     mapData <- reactive({ data[data$year == input$year,] })
     
