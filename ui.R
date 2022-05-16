@@ -5,6 +5,11 @@ ch <- as.list(str_to_title(states$names))
 shinyUI(fluidPage(
     tags$head(includeCSS('./styles.css')),
     titlePanel('US Presidential Election Popular Votes by Party and State'),
+    HTML('<div class="sub">
+        <span>A Shiny App By <a target="_blank" href="https://linkedin.com/in/sangeetashah">Sangeeta Shah</a></span>
+        <span>&emsp; | &emsp;</span>
+        <span><a target="_blank" href="https://shahstewart.github.io/slidifyDeck1">About this app</a></span>
+        </div>'),
     sidebarLayout(
         sidebarPanel(
             h3('Map Data Options', class='optionsHead'),

@@ -114,3 +114,6 @@ hr {
 ul li {
     text-align: left;
 }
+div.sub {
+    font-size: 11px;
+}
