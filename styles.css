@@ -87,7 +87,7 @@ h3.stateHead {
     color: #333;
     padding: 15px;
     overflow: auto;
-    min-height: 1000px;
+    min-height: 1120px;
 }
 
 .tab-content>.tab-pane:first-of-type {
