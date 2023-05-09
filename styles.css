@@ -8,7 +8,7 @@ body {
 
 .container-fluid {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
     min-width: 800px;
     text-align: center;
     margin: 20px auto;
@@ -22,8 +22,15 @@ h2, h3, h4, h5 {
     background: #666;
     border-radius: 4px;
     color: #ddd;
-    padding: 0 15px;    
+    padding: 0 15px;
+    justify-content: space-evenly;
 }
+
+/*.col-sm-4 {*/
+/*    background: #666;*/
+/*    border-radius: 6px;*/
+/*    padding-top: 20px;*/
+/*}*/
 
 .row {
     margin-top: 30px;
@@ -53,10 +60,6 @@ h3.stateHead {
 
 .js-plotly-plot .plotly, .js-plotly-plot .plotly div {
     padding: 0 15px;
-}
-
-.tabbable {
-    padding-top: 20px;
 }
 
 .nav-tabs>li>a {
@@ -116,4 +119,31 @@ ul li {
 }
 div.sub {
     font-size: 11px;
+}
+
+#usVotePlot {
+    margin-bottom: 20px;
+}
+
+#mapOptionsDiv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #fff;
+    padding-top: 15px;
+}
+
+#mapOptionsDiv .form-group {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+#mapOptionsDiv .selectize-control {
+    margin-top: 15px;
+    width: 240px;
+}
+
+#mapOptions {
+    text-align: left;
+    margin-left: 20%;
 }

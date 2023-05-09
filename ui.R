@@ -1,6 +1,7 @@
 library(shiny); library(plotly); library(stringr)
 states <- read.csv('./data/states.csv')
-ch <- as.list(str_to_title(states$names)) 
+ch <- as.list(str_to_title(states$names))
+ch[[1]] <- 'All US'
 
 shinyUI(fluidPage(
     tags$head(includeCSS('./styles.css')),
@@ -12,11 +13,8 @@ shinyUI(fluidPage(
         </div>'),
     sidebarLayout(
         sidebarPanel(
-            h3('Map Data Options', class='optionsHead'),
-            sliderInput('year', 'Select a Year', 1976, 2020, 2020, 4),
-            selectInput('showVoteType', 'Show Votes For:',
-                        list('Republican Party Only' = 1, 'Democratic Party Only' = 2, 'Both Major Parties' = 3),
-                        selected = 3),
+            h3('Plot Options', class='optionsHead'),
+            sliderInput('year', 'Select the Year Range', 1976, 2020, c(1976, 2020), 4),
             h3('Vote Details:', class='stateHead'),
             selectInput('state', 'Select a State', choices = ch, selected= 'ALL US'),
             p(textOutput('selectedState')),
@@ -29,10 +27,16 @@ shinyUI(fluidPage(
                 type = 'tabs',
                 tabPanel(
                     'US Elections',
-                    htmlOutput('mainPanelHeader'),
-                    plotlyOutput('voteMap'),
-                    HTML('<center><h3>Percent Votes by Party in US Presidential Elections</h3><h4>1976 - 2020</h4></center>'),
-                    plotlyOutput('usVotePlot')
+                    htmlOutput('usVotePlotHeader'),
+                    plotlyOutput('usVotePlot'),
+                    htmlOutput('mapPlotHeader'),
+                    tags$div(id='mapOptionsDiv',
+                    sliderInput('mapYear', 'select year:', 1976, 2020, 2020, 4),
+                    selectInput('showVoteType', 'show votes For:',
+                        list('Republican party only' = 1, 'Democratic party only' = 2, 'both major parties' = 3),
+                        selected = 3)
+                    ),
+                    plotlyOutput('voteMap')
                 ),
                 tabPanel(
                     'Documentaion',
@@ -40,28 +44,31 @@ shinyUI(fluidPage(
                     h3('What does this app do', class='secHead'),
                     HTML('<p>This app displays the vote break-up of the US presidential elections from year 
                      1976 to 2020. There are 4 areas where information is displayd: <br><br>
-                     <b>1. The US map in the main panel:</b> 
-                     Based on the year selected by the user, this map depicts the proportion of votes cast for the 
-                     two major parties, namely <i>The Republican</i> and <i>The Democratic</i> parties that year. 
-                     Hovering over a state will show the vote break-up details for that state in the selected year.
+                     <b>1. The line plot of vote break-up in the main panel:</b>
+                     This plot depicts the vote break-up by party in the US presidential elections for the selected
+                     year range anywhere between 1976 and 2020.
                      <br><br>
-                     <b>2. The line plot of vote break-up in main panel:</b> 
-                     This plot depicts the vote break-up by party of the US presidential elections from years 
-                     1976-2020. 
+                     <b>2. The US map in the main panel:</b>
+                     The map plot depicts the proportion of votes cast for the wo major parties, namely <i>The Republican</i>
+                     and <i>The Democratic</i> parties in the user selected year.
+                     Hovering over a state will show the vote break-up details for that state in the selected year.
                      <br><br>
                      <b>3. Vote details in the left sidebar:</b>
                      Here, you will see detailed vote stats such as total votes cast, votes cast for each party,
-                     percentage votes cast for each party etc. for the user-selected state.<br><br>
+                     percentage votes cast for each party etc. for the user-selected state and the first and the
+                     last year in the selected year range.<br><br>
                      <b>4. Vote break-up plot in the left sidebar:</b>
-                     This plot will change based on the state selected by the user, and will show the vote-breakup
-                     over the years 1976-2020 for that specific state.</p>'), br(),
+                     This plot will change based on the user selected state and time range, and will show the vote-breakup
+                     over the selected years for that specific state.</p>'), br(),
                     h3('How to use app options', class='secHead'),                   
-                    HTML('<p><b>Changing the Year:</b> When first loaded, the map depicts 2020 data. 
-                    User can change the year using the slider on the top of the sidebar on the left; 
-                    the page will update automatically.</p>'),
+                    HTML('<p><b>Changing the Year range for the plots:</b> When first loaded, the plots depict vote
+                     breakup for 1976-2020. Users can change the year range using the slider on the top of the sidebar
+                     on the left. The page will update automatically.</p>'),
+                    HTML('<p><b>Changing the Year for the map data:</b> When first loaded, the map depicts vote
+                     for year 2020. Users can change the year using the slider above the map.</p>'),
                     HTML('<p><b>Changing the Party:</b> You can choose to see votes cast for 
                     either of the two major parties or both parties by making appropriate selection from the 
-                    <i>Show Vote For</i> drop-down.</p>'),
+                    <i>show Votes For</i> drop-down.</p>'),
                     HTML('<p><b>Seeing details vote break-up for a state:</b> To see the detailed vote break-up, 
                     select a state from the state drop-down. This will also update the selected state vote-break up 
                     plot in the sidebar.</p>
