@@ -14,7 +14,7 @@ shinyUI(fluidPage(
     sidebarLayout(
         sidebarPanel(
             h3('Plot Options', class='optionsHead'),
-            sliderInput('year', 'Select the Year Range', 1976, 2020, c(1976, 2020), 4),
+            sliderInput('year', 'Select the Year Range', 1976, 2020, c(1976, 2020), 4, sep=''),
             h3('Vote Details:', class='stateHead'),
             selectInput('state', 'Select a State', choices = ch, selected= 'ALL US'),
             p(textOutput('selectedState')),
@@ -31,7 +31,7 @@ shinyUI(fluidPage(
                     plotlyOutput('usVotePlot'),
                     htmlOutput('mapPlotHeader'),
                     tags$div(id='mapOptionsDiv',
-                    sliderInput('mapYear', 'select year:', 1976, 2020, 2020, 4),
+                    sliderInput('mapYear', 'select year:', 1976, 2020, 2020, 4, sep=''),
                     selectInput('showVoteType', 'show votes For:',
                         list('Republican party only' = 1, 'Democratic party only' = 2, 'both major parties' = 3),
                         selected = 3)
