@@ -39,7 +39,7 @@ shinyUI(fluidPage(
                     plotlyOutput('voteMap')
                 ),
                 tabPanel(
-                    'Documentaion',
+                    'Documentation',
                     h2('About this app', class='secHead'), hr(),
                     h3('What does this app do', class='secHead'),
                     HTML('<p>This app displays the vote break-up of the US presidential elections from year 
